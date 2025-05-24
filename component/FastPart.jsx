@@ -1,74 +1,65 @@
+import { Box, Typography, Card, CardContent, IconButton } from "@mui/material";
+import { CheckCircle, Cancel } from "@mui/icons-material";
+
 export default function FastPart({ list }) {
   const { no, context, question, ans, audio } = list;
 
   return (
-    <div key={no} className="mb-8">
-      <div>
-        <h2 className="text-xl mb-4">Question No: {"0" + no}</h2>
-      </div>
+    <Box key={no} mb={8}>
+      {/* Question Number */}
+      <Typography variant="h5" mb={2}>
+        Question No: {"0" + no}
+      </Typography>
 
-      <div className="max-w-[300px] md:max-w-[500px] mb-4">
-        <audio controls className="w-full">
+      {/* Audio Player */}
+      <Box mb={4} sx={{ maxWidth: 300, width: "100%" }}>
+        <audio controls style={{ width: "100%" }}>
           <source src={audio} />
         </audio>
-      </div>
+      </Box>
 
-      <div className="mb-8 p-4 border rounded-lg">
-        <div className="mb-4">
-          <h2 className="text-sm md:text-xl mb-2">Context:</h2>
-          <h3 className="text-red-400 text-xs mb-1 md:text-lg">CN: {context?.cn}</h3>
-          <h3 className="text-green-300 text-xs mb-1 md:text-lg">PY: {context?.py}</h3>
-          <h3 className="text-yellow-300 text-xs mb-1 md:text-lg">EN: {context?.en}</h3>
-        </div>
+      {/* Context, Question, and Answer */}
+      <Card>
+        <CardContent>
+          {/* Context Section */}
+          <Box mb={4}>
+            <Typography variant="body2" mb={1}>Context:</Typography>
+            <Typography color="error.main" variant="body2" mb={1}>
+              CN: {context?.cn}
+            </Typography>
+            <Typography color="success.main" variant="body2" mb={1}>
+              PY: {context?.py}
+            </Typography>
+            <Typography color="warning.main" variant="body2" mb={1}>
+              EN: {context?.en}
+            </Typography>
+          </Box>
 
-        <div className="mb-4">
-          <h2 className="text-sm md:text-xl mb-2">Question:</h2>
-          <h3 className="text-xs mb-1 md:text-lg">
-            {question?.cn} ({question?.py})
-          </h3>
-          <h3 className="text-xs mb-1 md:text-lg">{question?.en}</h3>
-        </div>
+          {/* Question Section */}
+          <Box mb={4}>
+            <Typography variant="body2" mb={1}>Question:</Typography>
+            <Typography variant="body2" mb={1}>
+              {question?.cn} ({question?.py})
+            </Typography>
+            <Typography variant="body2">{question?.en}</Typography>
+          </Box>
 
-        <div>
-          <h2 className="text-sm md:text-xl mb-2 flex items-center gap-2">
-            Answer:
-            {ans?.isCorrect ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-red-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            )}
-          </h2>
-          <h3 className="text-xs mb-1 md:text-lg">
-            {ans?.cn} ({ans?.py}) / {ans?.en}
-          </h3>
-        </div>
-      </div>
-    </div>
+          {/* Answer Section */}
+          <Box>
+            <Typography variant="body2" mb={1} display="flex" alignItems="center">
+              Answer:
+              {ans?.isCorrect ? (
+                <CheckCircle color="success" sx={{ ml: 1 }} />
+              ) : (
+                <Cancel color="error" sx={{ ml: 1 }} />
+              )}
+            </Typography>
+            <Typography variant="body2" mb={1}>
+              {ans?.cn} ({ans?.py}) / {ans?.en}
+            </Typography>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
