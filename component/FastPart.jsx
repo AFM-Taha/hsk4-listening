@@ -23,30 +23,89 @@ export default function FastPart({ list }) {
         <CardContent>
           {/* Context Section */}
           <Box mb={4}>
-            <Typography variant="body2" mb={1}>Context:</Typography>
-            <Typography color="error.main" variant="body2" mb={1}>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} variant="body2" mb={1}>
+                   Context:
+              </Typography>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} color="error.main" variant="body2" mb={1}>
               CN: {context?.cn}
             </Typography>
-            <Typography color="success.main" variant="body2" mb={1}>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} color="success.main" variant="body2" mb={1}>
               PY: {context?.py}
             </Typography>
-            <Typography color="warning.main" variant="body2" mb={1}>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} color="warning.main" variant="body2" mb={1}>
               EN: {context?.en}
             </Typography>
           </Box>
 
           {/* Question Section */}
           <Box mb={4}>
-            <Typography variant="body2" mb={1}>Question:</Typography>
-            <Typography variant="body2" mb={1}>
-              {question?.cn} ({question?.py})
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} variant="body2" mb={1}>Question:</Typography>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} variant="body2" >
+              {question?.cn} 
             </Typography>
-            <Typography variant="body2">{question?.en}</Typography>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} variant="body2">{question?.py}</Typography>
+            <Typography 
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  md: '16px',
+                  lg: '18px'
+                },
+              }} variant="body2">{question?.en}</Typography>
           </Box>
 
           {/* Answer Section */}
           <Box>
-            <Typography variant="body2" mb={1} display="flex" alignItems="center">
+            <Typography variant="body2" display="flex" alignItems="center">
               Answer:
               {ans?.isCorrect ? (
                 <CheckCircle color="success" sx={{ ml: 1 }} />
@@ -54,9 +113,9 @@ export default function FastPart({ list }) {
                 <Cancel color="error" sx={{ ml: 1 }} />
               )}
             </Typography>
-            <Typography variant="body2" mb={1}>
+            {/* <Typography variant="body2" mb={1}>
               {ans?.cn} ({ans?.py}) / {ans?.en}
-            </Typography>
+            </Typography> */}
           </Box>
         </CardContent>
       </Card>
