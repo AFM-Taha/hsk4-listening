@@ -1,18 +1,18 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import data from "@/data/data";
 import { useState } from "react";
-import FastPart from "@/component/FastPart";
-import { AppBar, Button, Container, Grid, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Container, Grid, IconButton, Toolbar, Typography } from "@mui/material";
 import { ArrowForward, ArrowBack } from "@mui/icons-material";
+import FastPart from "@/component/FastPart";
+import data from "@/data/data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export default function Home() {
@@ -32,13 +32,24 @@ export default function Home() {
       {/* Navbar */}
       <AppBar position="fixed" sx={{ top: 0, left: 0, right: 0, zIndex: 50 }}>
         <Toolbar>
-          <IconButton onClick={handlePrevious} edge="start" color="inherit" aria-label="previous" sx={{ mr: 2 }}>
+          <IconButton 
+            onClick={handlePrevious} 
+            edge="start" 
+            color="inherit" 
+            aria-label="previous" 
+            sx={{ mr: 2 }}
+          >
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Lesson {currentLesson > 9 ? currentLesson : "0" + currentLesson}
           </Typography>
-          <IconButton onClick={handleNext} edge="end" color="inherit" aria-label="next">
+          <IconButton 
+            onClick={handleNext} 
+            edge="end" 
+            color="inherit" 
+            aria-label="next"
+          >
             <ArrowForward />
           </IconButton>
         </Toolbar>
