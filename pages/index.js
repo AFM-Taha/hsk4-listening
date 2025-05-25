@@ -90,7 +90,7 @@ export default function Home() {
           position: 'fixed',
           bottom: 0,
           left: 0,
-          pt: 2,
+          pt: 3,
           pb: 0.3,
           borderTopLeftRadius: '50%',
           borderTopRightRadius: '50%',
