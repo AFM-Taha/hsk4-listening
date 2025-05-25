@@ -4,6 +4,7 @@ import { AppBar, Box, Container, Grid, IconButton, Toolbar, Typography } from "@
 import { ArrowForward, ArrowBack } from "@mui/icons-material";
 import FastPart from "@/component/FastPart";
 import data from "@/data/data";
+import { useSwipeable } from 'react-swipeable';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +28,17 @@ export default function Home() {
     setCurrentLesson((prev) => (prev < totalLessons ? prev + 1 : 1));
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrevious,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
+
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)]`}>
       {/* Navbar */}
       <AppBar position="fixed" sx={{ top: 0, left: 0, right: 0, zIndex: 50 }}>
-
         <Toolbar>
           <IconButton
             onClick={handlePrevious}
@@ -62,32 +69,25 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ marginTop: 7, paddingY: 2 }}>
-        <Grid container spacing={4} direction="column" alignItems="center">
-          {/* Fast_Part */}
-          {data
-            .filter((item) => item.lesson === currentLesson)
-            .map((item) => {
-              const { lesson, fastPart } = item;
-              return (
-                <Grid item key={lesson} xs={12} width="100%">
-                  <Box sx={{
-                    textAlign: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    mb: 1
-                  }}>
-                    Part -01
-                  </Box>
-                  {fastPart.map((list) => (
-                    <FastPart key={list.no} list={list} />
-                  ))}
-                </Grid>
-              );
-            })}
-        </Grid>
+      <Container maxWidth="lg" sx={{ marginTop: 10, paddingY: 2 }}>
+        <div {...swipeHandlers}>
+          <Grid container spacing={4} direction="column" alignItems="center">
+            {/* Fast_Part */}
+            {data
+              .filter((item) => item.lesson === currentLesson)
+              .map((item) => {
+                const { lesson, fastPart } = item;
+                return (
+                  <Grid item key={lesson} xs={12} width="100%">
+                    {fastPart.map((list) => (
+                      <FastPart key={list.no} list={list} />
+                    ))}
+                  </Grid>
+                );
+              })}
+          </Grid>
+        </div>
       </Container>
-
 
       <Box
         sx={{
@@ -98,7 +98,7 @@ export default function Home() {
           position: 'fixed',
           bottom: 0,
           left: 0,
-          pt: 3,
+          pt: 2,
           pb: 0.3,
           borderTopLeftRadius: '50%',
           borderTopRightRadius: '50%',
