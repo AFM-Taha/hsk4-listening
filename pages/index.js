@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
-import { AppBar, Container, Grid, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, Grid, IconButton, Toolbar, Typography } from "@mui/material";
 import { ArrowForward, ArrowBack } from "@mui/icons-material";
 import FastPart from "@/component/FastPart";
 import data from "@/data/data";
@@ -31,23 +31,30 @@ export default function Home() {
     <div className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)]`}>
       {/* Navbar */}
       <AppBar position="fixed" sx={{ top: 0, left: 0, right: 0, zIndex: 50 }}>
+
         <Toolbar>
-          <IconButton 
-            onClick={handlePrevious} 
-            edge="start" 
-            color="inherit" 
-            aria-label="previous" 
+          <IconButton
+            onClick={handlePrevious}
+            edge="start"
+            color="inherit"
+            aria-label="previous"
             sx={{ mr: 2 }}
           >
             <ArrowBack />
           </IconButton>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            sx={{
+              flexGrow: 1,
+              textAlign: 'center'
+            }}
+          >
             Lesson {currentLesson > 9 ? currentLesson : "0" + currentLesson}
           </Typography>
-          <IconButton 
-            onClick={handleNext} 
-            edge="end" 
-            color="inherit" 
+          <IconButton
+            onClick={handleNext}
+            edge="end"
+            color="inherit"
             aria-label="next"
           >
             <ArrowForward />
@@ -55,7 +62,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ marginTop: 10, paddingTop: 6 }}>
+      <Container maxWidth="lg" sx={{ marginTop: 10, paddingY: 2 }}>
         <Grid container spacing={4} direction="column" alignItems="center">
           {/* Fast_Part */}
           {data
@@ -72,6 +79,51 @@ export default function Home() {
             })}
         </Grid>
       </Container>
+
+
+      <Box
+        sx={{
+          bgcolor: 'red',
+          width: '100%',
+          textAlign: 'center',
+          fontSize: 12,
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          py: 1,
+          borderTopLeftRadius: '50%',
+          borderTopRightRadius: '50%',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '80%',
+          maxWidth: '1200px'
+        }}>
+          <span>
+            Powered by - <a
+              href="https://bluex.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#1976D2',
+                textDecoration: 'none',
+                fontWeight: 'bold'
+              }}
+            >
+              BlueX
+            </a>
+          </span>
+
+          <Box>
+            Author - Taha
+          </Box>
+        </Box>
+      </Box>
     </div>
   );
 }
