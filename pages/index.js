@@ -62,7 +62,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ marginTop: 10, paddingY: 2 }}>
+      <Container maxWidth="lg" sx={{ marginTop: 7, paddingY: 2 }}>
         <Grid container spacing={4} direction="column" alignItems="center">
           {/* Fast_Part */}
           {data
@@ -71,6 +71,14 @@ export default function Home() {
               const { lesson, fastPart } = item;
               return (
                 <Grid item key={lesson} xs={12} width="100%">
+                  <Box sx={{
+                    textAlign: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    mb: 1
+                  }}>
+                    Part -01
+                  </Box>
                   {fastPart.map((list) => (
                     <FastPart key={list.no} list={list} />
                   ))}

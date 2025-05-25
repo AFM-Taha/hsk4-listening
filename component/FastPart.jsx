@@ -10,7 +10,7 @@ export default function FastPart({ list }) {
       <Typography
         sx={{
           fontSize: {
-            xs: '18px',
+            xs: '16px',
             md: '24px',
             lg: '28px'
           },
